@@ -70,6 +70,7 @@ functions:
      - http:
          path: draft/get-players-by-draft-position
          method: get
+         cors: true
          request:
           parameters:
             paths:
