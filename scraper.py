@@ -32,7 +32,7 @@ driver = webdriver.Chrome("/usr/local/bin/chromedriver", chrome_options=options)
 
 
 draft_ids = ["DzDCTM8IcM", "B9NVqlIJVy", "KiDJ0ZSr5j", "NGwIOEACJV", "iRkJV9ThCD", "rESVBpd6Zm", "5vCVD5WIkb", "cYQYExLEvg", "LtusOHSgu1", "LyFCdgPAl0", "mPbak6GCwR", "17HAGeVPGF", "GysD2s6pa2", "OE4A9dEPcz", "qis7dag77A", "mkKWuJy94R", "ES0htZoXMc", "XGTSnvgY6q", "CSHKXIvH2N", "qYmCdLJwjC", "8JvNEn6VeZ", "q75yk4RxFc", "RLCmp6NMi5", "YJ4Ve5obzN", "vJdErP5JVn", "efpk6OdeIr", "maGQICUbVf", "LbxjwEUcy7", "Iedh7tIGfI", "u6DKZbvWOC", "NCcIjmNAAg", "YEiNTbLzO9", "0Av0Fj89B2", "H7hnzoX1BA", "v2yQLO3iAX", "eRlQocFGrM", "xLTGBlSvL3", "P3E6PPaIsI", "Qixo0Le1rf", "CZHOMLDz0T", "IKW6IiuBMu", "lqimwPFr7T", "JlwewfjeWF", "ocH7lirAAE", "0EZzyBfApD", "KAxHhL39DU", "kMhqkOVpsm", "sATyK1CrTE", "cEgx27MtCm", "FD1UwkHidZ", "ZvZOzjKvf7", "CQDfEoQPmp", "mLk1vfJPSn", "NHsS4wRmoU", "njrMFmMjpE", "bnpnXMUcBC", "FaZl609LlZ", "Jlb6HucvAe", "vd82CJeqh2", "XpAd3diz9D", "sCbwDqCA97", "F79x0EUy7w", "tiHlft6GjJ", "cW6Sh0cYn5", "SO75RgF6k2", "6rc9Aulg29", "Nil98PIiyq", "DrXEE7oBz3", "zSyafriXPB", "Vgr5JC65tu", "eLb38jh0yN", "wc3dyubmYv", "dwhwI0KA1H", "sKgYJdftSF", "1EYWeHDkpn", "MyGo2hvD0I", "e2K2c1i7t8", "2BWxkfyAej", "HGH8lTBRje", "MPltahciEW", "J9DxRO30pW", "0XPo93z7Pu", "LIbBSeYfyj", "TVaDwNJ7xX", "cHouIXDHVX", "2oJr0VgpeH", "2CEwPinRzm", "P7GpVNrMtR", "XwBI0dRQ6G", "262vRxXgX7", "D3BsHLZ0QR", "uAXhNYUmJ8", "VyOMBX8roU", "QpdHTrkY19", "0ZCD1qdEAF", "LmnaDLgAjw", "SZY3nABkow", "NZ3Q2MjONm", "aS47YJd3nd", "EFlXiOiEqm"]
-# draft_ids = ["DzDCTM8IcM", "B9NVqlIJVy", "KiDJ0ZSr5j", "NGwIOEACJV", "iRkJV9ThCD"]
+
 for idx, draft_id in enumerate(draft_ids, start=1):
 
     driver.get(f"https://thedraftnetwork.com/mockDraft/{draft_id}")
@@ -44,7 +44,6 @@ for idx, draft_id in enumerate(draft_ids, start=1):
     pattern = re.compile('[\W_]+')
 
     for x in range(len(li_list)):
-
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         pick_numbers = soup.find_all('h6', {"class": "pick-number"})
         team_names = soup.find_all('div', {"class": "team-name"})
