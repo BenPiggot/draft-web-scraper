@@ -102,7 +102,7 @@ export default function Home() {
         players.length ? players.map(player => {
           return (
             <div style={listItemStyles}>
-              {player.player_name}
+              {player.player_name}, {player.player_position}, {player.player_team}
             </div>
           )
         }) : null
