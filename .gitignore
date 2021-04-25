@@ -16,6 +16,11 @@ var/
 .installed.cfg
 *.egg
 node_modules/
+__pycache__
+
+# Gatsby stuff
+.cache/
+public/
 
 # Serverless directories
 .serverless

@@ -68,9 +68,10 @@ functions:
 #    Check the event documentation for details
     events:
      - http:
-         path: draft/get-players-by-draft-position
+         path: draft/{draft_position}
          method: get
          cors: true
+         integration: lambda
          request:
           parameters:
             paths:
@@ -112,3 +113,7 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+package:
+  exclude:
+    - 'node_modules/**'
+    - 'draft-web-scraper-ui/**'
