@@ -94,7 +94,6 @@ export default function Home() {
   }
 
   const buildChart = (players) => {
-    console.log('building')
     var _map = {}
     for (let i = 0; i < players.length; i++) {
       if (_map[players[i].player_name]) _map[players[i].player_name] += 1
@@ -133,11 +132,11 @@ export default function Home() {
         useHTML: true
       },
       plotOptions: {
-        column: {
-          pointPadding: 0,
+        series: {
           borderWidth: 0,
-          groupPadding: 0,
-          shadow: false
+          dataSorting: {
+            enabled: true
+          },
         }
       },
       series: [{
