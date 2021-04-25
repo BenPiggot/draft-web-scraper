@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import highcarts from 'highcharts';
+import Highcharts from 'highcharts';
 
 // styles
 const pageStyles = {
@@ -86,11 +86,68 @@ export default function Home() {
     const json = await response.json();
 
     setPlayers(json['body']);
+    buildChart(json['body']);
   }
 
   const handleSetDraftPosition = (e) => {
     setDraftPosition(e.target.value)
   }
+
+  const buildChart = (players) => {
+    console.log('building')
+    var _map = {}
+    for (let i = 0; i < players.length; i++) {
+      if (_map[players[i].player_name]) _map[players[i].player_name] += 1
+      else _map[players[i].player_name] = 1
+    }
+
+    var categories = Object.keys(_map)
+    var data = Object.values(_map)
+
+    Highcharts.chart('container', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: `Selection # ${players[0].position} (${players[0].team})`
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        categories,
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: ''
+        }
+      },
+      tooltip: {
+        headerFormat: '<span>{point.key}</span><table>',
+        pointFormat: '<tr><td>{series.name}: </td>' +
+          '<td ><b>{point.y}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0,
+          borderWidth: 0,
+          groupPadding: 0,
+          shadow: false
+        }
+      },
+      series: [{
+        name: 'Number of Times Selected',
+        data
+      }]
+    });
+  }
+
+
 
   return (
     <div style={pageStyles}>
@@ -98,7 +155,8 @@ export default function Home() {
         <input onChange={handleSetDraftPosition} value={draftPosition} />
         <buttom style={badgeStyle} onClick={getPlayersByPostiion}>Fetch</buttom>
       </div>
-      {
+      <div id="container"></div>
+      {/* {
         players.length ? players.map(player => {
           return (
             <div style={listItemStyles}>
@@ -106,7 +164,7 @@ export default function Home() {
             </div>
           )
         }) : null
-      }
+      } */}
     </div>
   )
 }
